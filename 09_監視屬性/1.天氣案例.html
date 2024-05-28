@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue</title>
+    <title>天氣案例_監視屬性</title>
     <!-- 引入Vue.js -->
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
@@ -11,28 +11,29 @@
     <!-- 準備好一個容器 -->
 
     <div id="root">
-        姓: <input type="text" v-model="firstName"><br>
-        名: <input type="text" v-model="lastName"><br>
-        姓名: <span>{{fullName()}}</span>
+        <h2>今天的天氣很{{info}}</h2>
+        <button @click="changeWeather">切換天氣</button>
     </div>
 
 
     <script type="text/javascript">
         Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
 
-        const vw = new Vue({
+        const vm = new Vue({
             el: '#root',
-            data:{
-                firstName: '張',
-                lastName: '三'
-                
+            data: {
+                isHot:true
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '炎熱' : '涼快'
+                }
             },
             methods: {
-                fullName() {
-                    return this.firstName + '-' + this.lastName;
+                changeWeather(){
+                    this.isHot = !this.isHot;
                 }
             }
-            
         })
         
     </script>

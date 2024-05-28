@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue</title>
+    <title>姓名案例_監視屬性</title>
     <!-- 引入Vue.js -->
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
@@ -13,7 +13,7 @@
     <div id="root">
         姓: <input type="text" v-model="firstName"><br>
         名: <input type="text" v-model="lastName"><br>
-        姓名: <span>{{firstName.slice(0,3)}}-{{lastName}}</span>
+        姓名: <span>{{fullName}}</span>
     </div>
 
 
@@ -24,8 +24,20 @@
             el: '#root',
             data:{
                 firstName: '張',
-                lastName: '三'
-                
+                lastName: '三',
+                fullName:'張-三'
+            },        
+            watch:{
+                firstName(newVal){
+                    setTimeout(() => {
+                        this.fullName = newVal + '-' + this.lastName;
+                    }, 1000); // 延遲1秒，讓console.log先執行完，再顯示姓名。
+                    
+                },
+                lastName(newVal){
+                    this.fullName = this.firstName + '-' +  newVal;
+                }
+                   
             }
         })
         
