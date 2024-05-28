@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_數據綁定</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+        <!-- 普通寫法 -->
+        <!-- 單向數據綁定:<input type="text" v-bind:value="name"><br>
+        雙向數據綁定:<input type="text" v-model:value="name"> -->
+
+        <!-- 簡寫 -->
+        單向數據綁定:<input type="text" :value="name"><br>
+        雙向數據綁定:<input type="text" v-model="name">
+        
+    </div>
+
+    <!-- v-model只能應用在表單元素(輸入類元素) 有value -->
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        new Vue ({
+            el: '#root',
+            data: {
+                name: 'Mary'
+            }
+        })
+        
+    </script>
+</body>
+</html>

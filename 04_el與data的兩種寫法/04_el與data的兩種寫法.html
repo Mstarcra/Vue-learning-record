@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+        <h1>你好,{{name}}</h1>
+        
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        // el第2種寫法
+        // const v =  new Vue({
+        //     //el:'#root',
+        //     data:{
+        //         name:'呂俊逸'
+        //     }
+        // })
+        // console.log(v);
+       
+        // setTimeout(() => {
+        //     v.$mount('#root') // 將 Vue 物件與 HTML 元素綁定 同el
+        // }, 3000);
+
+        // data的另一種寫法
+            new Vue ({
+            el:'#root',
+            //對象式寫法
+            //data:{
+            // name:'呂俊逸'
+            // }
+
+
+            //函數式寫法  要寫普通函數 不可以箭頭函數 可省略:function
+            data:function(){
+                return{
+                    name:'呂俊逸'
+                }
+
+            }
+
+            });
+
+    </script>
+</body>
+</html>

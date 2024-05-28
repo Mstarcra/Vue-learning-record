@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定義屬性</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+
+        
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        let number = 18;
+
+        let person = {
+            name: '張三',
+            sex:'male'
+        }
+
+        Object.defineProperty(person, 'age', {
+            // value: 25,
+            // enumerable:true,  //控制屬性是否可列舉
+            // writable:true,  //控制屬性是否可修改
+            // configurable:true,  //控制屬性是否可刪除
+
+            // get函數通常稱為getter，用來取得屬性的值
+            get: function() {
+                return number;
+            },
+
+            // 可簡寫為get()
+
+
+            // set函數通常稱為setter
+            set: function(value) {
+                console.log('有人修正age值，且值是value');
+                number = value; //要有這句否則沒變動 因為number沒變
+            }
+            },)
+        
+
+        console.log(Object.keys(person)); 
+        console.log(person);
+        
+    </script>
+</body>
+</html>

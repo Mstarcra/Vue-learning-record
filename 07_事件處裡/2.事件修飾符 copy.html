@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1 {
+            height: 50px;
+            background-color: #61e5e3;
+        }
+        .box1 {
+            padding: 5px;
+            background-color: #8b7575;
+        }
+        .box2 {
+            padding: 5px;
+            background-color: #c54c4c;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: #8a8282;
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 準備好一個容器 --> 
+
+    <div id="root">
+        <h1>歡迎來到{{name}}學習</h1>
+
+        <!-- 阻止默認事件 -->
+        <a href="https://www.google.com" @click.prevent="showinfo">點我提示信息</a>
+
+        <!-- 阻止事件冒泡 -->
+        <div class="demo1" @click="showinfo">
+            <button @click.stop="showinfo">點我提示信息</button>
+        </div>
+
+        <!-- 事件只觸發一次 -->
+        <button @click.once="showinfo">點我提示信息</button>
+
+        <!-- 使用事件的捕獲模式 -->
+        <div class="box1" @click.capture="showMsg(1)">
+            div1
+            <div class="box2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+
+        <!-- e.target是當前元素時才觸發事件 -->
+        <div class="demo1" @click.self="showinfo">
+            <button @click="showinfo">點我提示信息</button>
+        </div>
+
+        <!-- 即便有其他事件 也執行預測事件 -->
+        <ul @wheel.passive="demo" class="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷'
+            },
+            methods: {
+                showinfo(e){
+                    alert('你按下了按鈕');
+                    // console.log(e.target);
+                },
+
+                showMsg(msg){
+                    console.log(msg);
+                    
+                },
+                demo(){
+                    for(let i=0;i<10000;i++){
+                        console.log("#");
+                    }
+                    console.log("累");
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初識Vue</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+
+        <h1>Hello,{{name}}, {{address}}</h1>  
+        <h1>我的年齡：</h1>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        // 建立一個 Vue 實例     const x 可省略
+        const x = new Vue({
+            el:"#root",  //el 選擇器，指定 Vue 要管理的元素 對應上面的容器
+            // 同樣道理 寫法
+            // el:document.getElementById("root") 
+            //也可以用document.getElementById("root")
+            data:{//data存放資料 供容器選定的 元素使用
+                name:'世界',
+                address:'台灣'
+            }
+        })
+
+        // axios({
+        //     url:"https://jsonplaceholder.typicode.com/todos/1"
+        // })
+    </script>
+</body>
+</html>

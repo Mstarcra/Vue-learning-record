@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1 {
+            height: 50px;
+            background-color: #61e5e3;
+        }
+        .box1 {
+            padding: 5px;
+            background-color: #8b7575;
+        }
+        .box2 {
+            padding: 5px;
+            background-color: #c54c4c;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: #8a8282;
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 準備好一個容器 --> 
+
+    <div id="root">
+        <h2>歡迎來到{{name}}學習</h2>
+
+        <input type="text" placeholder="請輸入文字" @keyup="showinfo">
+        
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷'
+            },
+            methods: {
+                showinfo(e){
+                    // if(e.keyCode !== 13) return; //預設辦法 沒有按ENTER不繼續
+                    // alert('你按下了按鈕');
+                    console.log(e.key, e.keyCode);
+                    
+                    console.log(e.target.value);
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
