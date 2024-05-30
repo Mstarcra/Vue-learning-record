@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的原理</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+        <h2>人員列表</h2>
+        <button @click.once="add">添加一個老劉</button>
+        <ul>
+            <!-- <li v-for="person in persons">姓名-年齡</li> -->
+            <li v-for="person in persons" :key="person.id">{{person.name}}-{{person.age}} 
+                <input type="text">
+            </li>
+            
+        </ul>
+        
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                persons:[
+                    {id:'001',name:'John',age:25},
+                    {id:'002',name:'Mary',age:30},
+                    {id:'003',name:'Tom',age:28}
+                ]
+            },
+            methods: {
+                add(){
+                    const p = {id:'004',name:'老劉',age:26};
+                    this.persons.unshift(p);
+                }
+            }    
+        });
+    </script>
+</body>
+</html>
