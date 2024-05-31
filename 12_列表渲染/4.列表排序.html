@@ -13,6 +13,9 @@
     <div id="root">
         <h2>人員列表</h2>
         <input type="text" placeholder="請輸入姓名" v-model="keyWord">
+        <button @click="sortType=2">年齡升序</button>
+        <button @click="sortType=1">年齡降序</button>
+        <button @click="sortType=0">原順 序</button>
         <ul>
             <!-- <li v-for="person in persons">姓名-年齡</li> -->
             <li v-for="(p, index) in filPersons" :key="p.id">{{p.name}}-{{p.age}}-{{p.sex}}</li>
@@ -25,59 +28,33 @@
     <script type="text/javascript">
         Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
 
-
-        //用watch來實現搜索   下方摺疊了
-            //#region
-        // const vm = new Vue({
-        //     el: '#root',
-        //     data: {
-        //         keyWord: '',
-        //         persons:[
-        //             {id:'001',name:'馬冬梅',age:25,sex:'女'},
-        //             {id:'002',name:'周冬雨',age:30,sex:'女'},
-        //             {id:'003',name:'周杰倫',age:28,sex:'男'},
-        //             {id:'004',name:'溫兆倫',age:28,sex:'男'}
-        //         ],
-        //         filterPersons:[]
-        //     },
-            
-        //     watch: {
-        //         keyWord:{
-        //             // console.log('keyWord 值已經改變了', newVal);
-        //             immediate: true, // 立即觸發
-        //             // 讓原來的陣列 變成新的陣列 所以加了第一個this.persons
-
-        //             handler(newVal){
-        //                 this.filterPersons = this.persons.filter((p)=>{
-        //                     return p.name.indexOf(newVal) !== -1;
-        //                 })
-
-                    
-        //             }
-        //         }
-        //     }       
-            //#endregion 
-
-
             //用computed來實現搜索
             const vm = new Vue({
             el: '#root',
             data: {
                 keyWord: '',
+                sortType:0 , //0原順序 1年齡降序 2年齡升序
                 persons:[
                     {id:'001',name:'馬冬梅',age:25,sex:'女'},
                     {id:'002',name:'周冬雨',age:30,sex:'女'},
                     {id:'003',name:'周杰倫',age:28,sex:'男'},
-                    {id:'004',name:'溫兆倫',age:28,sex:'男'}
+                    {id:'004',name:'溫兆倫',age:21,sex:'男'}
                 ],
                 
-            },
-            
+            },            
             computed: {
                 filPersons(){
-                    return this.persons.filter((p)=>{
+                    
+                    const  arr = this.persons.filter((p)=>{
                         return p.name.indexOf(this.keyWord) !== -1;
                     })
+                    // 判斷是否需要排序  0為false 不進入排序判斷
+                    if(this.sortType){
+                        arr.sort((p1, p2 )=>{
+                            return this.sortType === 1? p2.age - p1.age : p1.age - p2.age;
+                        })
+                    }
+                    return arr;
                 }
             }       
         });
