@@ -15,7 +15,7 @@
         <input type="text" placeholder="請輸入姓名" v-model="keyWord">
         <button @click="sortType=2">年齡升序</button>
         <button @click="sortType=1">年齡降序</button>
-        <button @click="sortType=0">原順 序</button>
+        <button @click="sortType=0">原順序</button>
         <ul>
             <!-- <li v-for="person in persons">姓名-年齡</li> -->
             <li v-for="(p, index) in filPersons" :key="p.id">{{p.name}}-{{p.age}}-{{p.sex}}</li>
