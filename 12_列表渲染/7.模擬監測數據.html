@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表過濾</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+        <!-- <h2>學校名稱:{{name}}</h2>
+        <h2>學校學校:{{address}}</h2> -->
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        let data = {
+            name:'國立成功大學',
+            address:'臺北市信義區松壽路1號'
+        }
+        
+        // 建立一個監聽器 監聽data的變化
+        const obs =  new Observer(data)
+        console.log(obs);
+
+        let vm = {}
+        vm._data = data = obs
+        
+
+        // Vue底層概念簡化版
+        function Observer(obj) {
+            //彙總對象中所有的屬性形成一個陣列
+            const keys = Object.keys(obj)
+            // 遍歷
+            console.log(keys);
+            keys.forEach((k)=>{
+                Object.defineProperty(this, k, {
+                    get() {
+                        return obj[k]
+                    },
+                    set(newVal) {
+                        console.log(`${k}被改了`);
+                        
+                        obj[k] = newVal
+                    }
+                })
+            })
+        }
+        
+
+    </script>
+</body>
+</html>
