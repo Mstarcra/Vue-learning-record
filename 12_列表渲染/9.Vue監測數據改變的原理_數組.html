@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表過濾</title>
+    <!-- 引入Vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 準備好一個容器 -->
+
+    <div id="root">
+        <h1>學校資訊</h1>
+        
+        <h2>名稱:{{school.name}}</h2>
+        <h2>學校:{{school.address}}</h2>
+        <h2>校長:{{school.leader}}</h2>
+        <hr>
+        <h1>學生資訊</h1>
+        <button @click="addGender">添加一個性別屬性,默認值為女</button>
+        <h2>姓名:{{student.name}}</h2>
+        <h2 v-if="student.gender">性別:{{student.gender}}</h2>
+        <h2>年齡:真實年齡{{student.age.rAge}}, 對外年齡{{student.age.sAge}}</h2>
+        <h2>愛好</h2>
+        <ul>
+            <li v-for="(h, index) in student.hobby" :key="index">{{h}}</li>
+        </ul>
+        <h2>朋友們</h2>
+        <ul>
+            <li v-for="(f, index) in student.friends" :key="index">{{f.name}}--{{f.age}}</li>
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 以阻止 Vue 在啟動時生成生產提示。
+
+        
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                // name:'國立成功大學',
+                // address:'臺北市信義區松壽路1號',
+                school:{
+                    name:'國立成功大學',
+                    address:'臺北市信義區松壽路1號',
+                },
+                student:{
+                    name:'陳小姐',
+                    age:{
+                        rAge:40,
+                        sAge:29,
+                    },
+                    hobby:['看電影','唱歌','跳舞'],
+                    friends:[
+                        {name:'張小姐', age:25},
+                        {name:'李小姐', age:28}
+                    ]                                        
+                }
+            },
+            methods:{
+                addGender(){
+                    Vue.set(this.student, 'gender', '女')
+                }
+            }
+        });
+
+        // 以下皆相等 
+        // Vue.set(vm._data.student, 'gender', '女')
+        // vm.$set(vm._data.student, 'gender', '女')
+        // Vue.set(vm.student, 'gender', '女')
+    </script>
+</body>
+</html>
